@@ -11,5 +11,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
+    public void textUpload(){
+        int i = 1 + 1;
+    }
 }
