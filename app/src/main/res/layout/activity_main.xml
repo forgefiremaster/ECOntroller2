@@ -21,7 +21,6 @@
         android:background="@color/white"
         >
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,6 +30,7 @@
             android:textSize="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/green"
             />
 
         <Switch
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="off  "
             android:layout_marginTop="2dp"
-            android:id="@+id/switch1"
+            android:id="@+id/offOn"
             android:layout_gravity="right"
             android:layout_marginRight="40dp"
             android:textSize="35dp"
@@ -73,14 +73,22 @@
             android:layout_weight="0.74"
             android:textSize="30dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"/>
-
+            android:layout_marginTop="10dp"
+            android:textColor="@color/green"
+            />
+        <View
+            android:background="@color/gray"
+            android:layout_width = "1dp"
+            android:layout_height="fill_parent"
+            />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Parear"
-            android:id="@+id/button"
-            android:layout_weight="0.12"/>
+            android:id="@+id/parear"
+            android:layout_weight="0.12"
+            android:background="#00ffffff"
+            android:textSize="17dp" />
     </LinearLayout>
     <View
         android:background="@color/gray"
@@ -90,8 +98,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.95">
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/aparelhosEncontrados"
+            >
+
+        </LinearLayout>
 
     </ScrollView>
 

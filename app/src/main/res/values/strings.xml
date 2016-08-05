@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">ECOntroller</string>
+    <string name="app_name">EController</string>
+    <string name="ligar">Ligar Bluetooth</string>
+    <string name="visibilidade">Ativar Visibilidade</string>
+    <string name="parear">Parear Dispositivos</string>
+    <string name="aparelhos">APARELHOS</string>
+    <string name="simulador">SIMULADOR</string>
+    <string name="cadastros">CADASTROS</string>
+    <string name="dispositivoNaoSuporta">Seu dispositivo não suporta o Bluetooth</string>
+    <string name="ligando">Ligando</string>
+    <string name="desligado">Desligado</string>
 </resources>
