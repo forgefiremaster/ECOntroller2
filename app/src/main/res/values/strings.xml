@@ -9,4 +9,5 @@
     <string name="dispositivoNaoSuporta">Seu dispositivo não suporta o Bluetooth</string>
     <string name="ligando">Ligando</string>
     <string name="desligado">Desligado</string>
+    <string name="bemVindo">Bem Vindo!</string>
 </resources>
