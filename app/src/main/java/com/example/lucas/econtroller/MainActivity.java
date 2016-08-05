@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout.LayoutParams params = null;
     Switch aSwitch;
     Button parear;
+    private boolean bluetoothEstaLigado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,51 +45,52 @@ public class MainActivity extends AppCompatActivity {
         listDevices = (LinearLayout) findViewById(R.id.aparelhosEncontrados);
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         aSwitch = (Switch) findViewById(R.id.offOn);
-
-        aSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                on();
-            }
-        });
-
-        parear = (Button) findViewById(R.id.parear);
-        parear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                list();
-            }
-        });
-    }
-
-    public void on(){
-        if(BA == null){
+        if (BA == null) {
             Toast.makeText(this, new String(getResources().getString(R.string.dispositivoNaoSuporta)), Toast.LENGTH_SHORT).show();
-        }else{
-            //Se o bloetooth estiver desligado então liga
-            if (!BA.isEnabled()) {
-                Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(turnOn, 0);
-                Toast.makeText(this, new String(getResources().getString(R.string.ligando)), Toast.LENGTH_LONG).show();
-                aSwitch.setText("Off");
-
-
-            } else {
-                //desligar o bluetooth
-                BA.disable();
-                Toast.makeText(this, new String(getResources().getString(R.string.desligado)), Toast.LENGTH_LONG).show();
-                aSwitch.setText("On");
+        } else {
+            if (BA.isEnabled()) {
+                bluetoothEstaLigado = true;
+                mudaTextoECorDoSwitch();
             }
-        }
 
+            aSwitch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    on();
+                }
+            });
+
+            parear = (Button) findViewById(R.id.parear);
+            parear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    list();
+                }
+            });
+        }
     }
 
-    public void visible(){
-        if(BA.isEnabled()){
+    public void on() {
+        //Se o bloetooth estiver desligado então liga
+        if (!BA.isEnabled()) {
+            Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(turnOn, 0);
+            Toast.makeText(this, new String(getResources().getString(R.string.ligando)), Toast.LENGTH_LONG).show();
+
+        } else {
+            //desligar o bluetooth
+            BA.disable();
+            Toast.makeText(this, new String(getResources().getString(R.string.desligado)), Toast.LENGTH_LONG).show();
+        }
+        mudaTextoECorDoSwitch();
+    }
+
+    public void visible() {
+        if (BA.isEnabled()) {
             Intent getVisible = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             startActivityForResult(getVisible, 0);
-            Toast.makeText(MainActivity.this,"Visibilidade ativada.",Toast.LENGTH_LONG).show();
-        }else{
+            Toast.makeText(MainActivity.this, "Visibilidade ativada.", Toast.LENGTH_LONG).show();
+        } else {
             Toast.makeText(MainActivity.this, "Ligue o Bluetooth.", Toast.LENGTH_LONG).show();
         }
     }
@@ -111,12 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 ll.setOrientation(LinearLayout.HORIZONTAL);
                 // Create TextView
                 TextView product = new TextView(this);
-                product.setText("Nome: "+nome[j]+"    ");
+                product.setText("Nome: " + nome[j] + "    ");
                 ll.addView(product);
                 // Create Button
                 final Button btn = new Button(this);
                 // Give button an ID
-                btn.setId(j+1);
+                btn.setId(j + 1);
                 btn.setText(nome[j]);
                 // set the layoutParams on the button
                 btn.setLayoutParams(params);
@@ -137,9 +139,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void cameBluetoothInfo(String nome){
+    public void cameBluetoothInfo(String nome) {
         Intent intent = new Intent(this, BluetoothInfo.class);
-        intent.putExtra("nome",nome);
+        intent.putExtra("nome", nome);
         startActivity(intent);
+    }
+
+    private void mudaTextoECorDoSwitch() {
+        if (bluetoothEstaLigado) {
+            aSwitch.setText("On");
+            aSwitch.setTextColor(getResources().getColor(R.color.azul));
+            bluetoothEstaLigado = false;
+        } else {
+            aSwitch.setText("Off");
+            aSwitch.setTextColor(getResources().getColor(R.color.vermelho));
+            bluetoothEstaLigado = true;
+        }
+
+
     }
 }

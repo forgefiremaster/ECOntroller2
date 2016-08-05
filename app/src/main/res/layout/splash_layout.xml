@@ -23,7 +23,7 @@
             android:id="@+id/textView"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:background="#75000000"
+            android:background="#51000000"
             android:textColor="#fffefe"
             android:textSize="50dp"
             android:textAlignment="center"
@@ -38,7 +38,8 @@
             android:layout_centerHorizontal="true"
             android:textSize="30dp"
             android:textStyle="italic"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:background="#01474747" />
 
     </RelativeLayout>
 

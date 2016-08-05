@@ -10,10 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by Lucas on 04/08/2016.
  */
-public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabListener{
+public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabListener {
     String nome = "";
     public ActionBar actionBar;
     ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +36,11 @@ public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabLis
 
             @Override
             public void onPageSelected(int position) {
-                if(position == 0){
+                if (position == 0) {
                     actionBar.setTitle(new String(getResources().getString(R.string.aparelhos)));
-                }else if(position == 1){
+                } else if (position == 1) {
                     actionBar.setTitle(new String(getResources().getString(R.string.simulador)));
-                }else{
+                } else {
                     actionBar.setTitle(new String(getResources().getString(R.string.cadastros)));
                 }
 
