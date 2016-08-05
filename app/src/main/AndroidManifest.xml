@@ -11,7 +11,11 @@
         android:label="Econtroller"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash">
+
+        <!--Nesta activity eu retiro a actionbar-->
+        <activity android:name=".Splash"
+            android:theme="@style/noActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
