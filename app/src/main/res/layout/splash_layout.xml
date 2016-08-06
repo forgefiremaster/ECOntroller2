@@ -23,8 +23,7 @@
             android:id="@+id/textView"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:background="#51000000"
-            android:textColor="#fffefe"
+            android:background="#81000000"
             android:textSize="50dp"
             android:textAlignment="center"
             android:textStyle="italic" />
@@ -40,6 +39,27 @@
             android:textStyle="italic"
             android:textColor="#ffffff"
             android:background="#01474747" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/plugicon"
+            android:layout_marginTop="127dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ECOntroller"
+            android:id="@+id/textView3"
+            android:textColor="#ffffff"
+            android:textSize="30dp"
+            android:textStyle="normal|bold"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2" />
 
     </RelativeLayout>
 

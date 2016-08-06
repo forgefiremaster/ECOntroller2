@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
             if (BA.isEnabled()) {
                 bluetoothEstaLigado = true;
                 mudaTextoECorDoSwitch();
+            }else{
+                bluetoothEstaLigado = false;
+                mudaTextoECorDoSwitch();
             }
 
             aSwitch.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     on();
                 }
             });
-
             parear = (Button) findViewById(R.id.parear);
             parear.setOnClickListener(new View.OnClickListener() {
                 @Override
