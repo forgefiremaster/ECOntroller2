@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.example.lucas.econtroller.fragments.MeusAparelhos;
-import com.example.lucas.econtroller.fragments.ComparadorConsumoEmGrafico;
 import com.example.lucas.econtroller.fragments.SimuladorDeAparelhos;
+import com.example.lucas.econtroller.fragments.ConsumoDosMeusAparelhos;
 
 /**
  * Created by Lucas on 26/07/2016.
@@ -21,7 +21,7 @@ public class MyAdapter extends FragmentPagerAdapter  {
         if(position == 0){
             fragment = new MeusAparelhos();
         }else if(position == 1){
-            fragment = new ComparadorConsumoEmGrafico();
+            fragment = new ConsumoDosMeusAparelhos();
         }else{
             fragment = new SimuladorDeAparelhos();
         }

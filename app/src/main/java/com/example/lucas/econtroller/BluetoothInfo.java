@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
+
 /**
  * Created by Lucas on 04/08/2016.
  */
@@ -14,7 +15,6 @@ public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabLis
     String nome = "";
     public ActionBar actionBar;
     ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +39,9 @@ public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabLis
                 if (position == 0) {
                     actionBar.setTitle(new String(getResources().getString(R.string.aparelhos)));
                 } else if (position == 1) {
-                    actionBar.setTitle(new String(getResources().getString(R.string.simulador)));
+                    actionBar.setTitle(new String(getResources().getString(R.string.consumo)));
                 } else {
-                    actionBar.setTitle(new String(getResources().getString(R.string.cadastros)));
+                    actionBar.setTitle(new String(getResources().getString(R.string.simulador)));
                 }
 
             }
@@ -64,9 +64,9 @@ public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabLis
         //Setando títuloas na TAB
         ActionBar.Tab tab1 = actionBar.newTab().setText(new String(getResources().getString(R.string.aparelhos)));
         tab1.setTabListener(this);
-        ActionBar.Tab tab2 = actionBar.newTab().setText(new String(getResources().getString(R.string.simulador)));
+        ActionBar.Tab tab2 = actionBar.newTab().setText(new String(getResources().getString(R.string.consumo)));
         tab2.setTabListener(this);
-        ActionBar.Tab tab3 = actionBar.newTab().setText(new String(getResources().getString(R.string.cadastros)));
+        ActionBar.Tab tab3 = actionBar.newTab().setText(new String(getResources().getString(R.string.simulador)));
         tab3.setTabListener(this);
 
         //Adicionando as tabs no action bar

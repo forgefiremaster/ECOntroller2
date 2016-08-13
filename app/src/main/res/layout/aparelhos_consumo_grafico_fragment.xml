@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    >
-
+    android:layout_height="match_parent" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/Principal"
         android:padding="10dp"
-        android:id="@+id/layoutMain">
-        <com.github.mikephil.charting.charts.BarChart
+        >
+        <com.github.mikephil.charting.charts.PieChart
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/barChart"
+            android:id="@+id/pieChart"
             >
 
-        </com.github.mikephil.charting.charts.BarChart>
+        </com.github.mikephil.charting.charts.PieChart>
 
     </RelativeLayout>
+
 </RelativeLayout>

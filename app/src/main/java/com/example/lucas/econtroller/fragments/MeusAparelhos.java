@@ -17,7 +17,7 @@ public class MeusAparelhos extends Fragment {
      private String nome = "";
 
      public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         View view = inflater.inflate(R.layout.fragment_tab1, container, false);
+         View view = inflater.inflate(R.layout.meu_aparelhos_fragment, container, false);
          textview = (TextView) view.findViewById(R.id.tabtextview);
 
          BluetoothInfo activity = (BluetoothInfo) getActivity();
