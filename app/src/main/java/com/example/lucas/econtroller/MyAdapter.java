@@ -3,10 +3,10 @@ package com.example.lucas.econtroller;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.example.lucas.econtroller.fragments.FragmentTab1;
-import com.example.lucas.econtroller.fragments.FragmentTab2;
-import com.example.lucas.econtroller.fragments.FragmentTab3;
-import com.example.lucas.econtroller.BluetoothInfo;
+import com.example.lucas.econtroller.fragments.MeusAparelhos;
+import com.example.lucas.econtroller.fragments.ComparadorConsumoEmGrafico;
+import com.example.lucas.econtroller.fragments.SimuladorDeAparelhos;
+
 /**
  * Created by Lucas on 26/07/2016.
  */
@@ -19,11 +19,11 @@ public class MyAdapter extends FragmentPagerAdapter  {
     @Override
     public Fragment getItem(int position) {
         if(position == 0){
-            fragment = new FragmentTab1();
+            fragment = new MeusAparelhos();
         }else if(position == 1){
-            fragment = new FragmentTab2();
+            fragment = new ComparadorConsumoEmGrafico();
         }else{
-            fragment = new FragmentTab3();
+            fragment = new SimuladorDeAparelhos();
         }
         return fragment;
     }

@@ -12,7 +12,7 @@ import com.example.lucas.econtroller.R;
  /**
  * Created by Lucas on 23/07/2016.
  */
-public class FragmentTab1 extends Fragment {
+public class MeusAparelhos extends Fragment {
      TextView textview;
      private String nome = "";
 

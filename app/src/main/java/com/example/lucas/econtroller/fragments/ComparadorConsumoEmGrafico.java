@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by Lucas on 04/08/2016.
  */
-public class FragmentTab2 extends Fragment {
+public class ComparadorConsumoEmGrafico extends Fragment {
     BarChart barChart;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){

@@ -12,22 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--Nesta activity eu retiro a actionbar-->
-        <activity android:name=".Splash"
-            android:theme="@style/noActionBar"
-            >
+        <!-- Nesta activity eu retiro a actionbar -->
+        <activity
+            android:name=".Splash"
+            android:theme="@style/noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".BluetoothInfo">
-
-        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".BluetoothInfo" />
     </application>
 
 </manifest>

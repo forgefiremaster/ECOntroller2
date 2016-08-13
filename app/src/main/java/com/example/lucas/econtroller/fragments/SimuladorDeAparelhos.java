@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by Lucas on 04/08/2016.
  */
-public class FragmentTab3 extends Fragment {
+public class SimuladorDeAparelhos extends Fragment {
     PieChart pieChart;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
