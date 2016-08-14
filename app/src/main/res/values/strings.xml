@@ -12,4 +12,6 @@
     <string name="bemVindo">Bem Vindo!</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_adicionar_aparelho_simulado">AdicionarAparelhoSimulado</string>
+    <string name="adicionar">ADICIONAR</string>
+    <string name="listar">LISTAR</string>
 </resources>

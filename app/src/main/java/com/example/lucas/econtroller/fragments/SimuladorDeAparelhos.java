@@ -1,6 +1,7 @@
 package com.example.lucas.econtroller.fragments;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Outline;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageButton;
 
+import com.example.lucas.econtroller.AdicionarAparelhosAoSimuladorActivity;
 import com.example.lucas.econtroller.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -32,9 +34,11 @@ public class SimuladorDeAparelhos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.simulador_de_consumo_grafico_fragment, container, false);
-
         floatingButton = (ImageButton) view.findViewById(R.id.floatingButton);
         barChart = (BarChart) view.findViewById( R.id.barChart );
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            initLFloatingButtons();
+        }
 
         ArrayList<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(4f, 0));
@@ -63,10 +67,6 @@ public class SimuladorDeAparelhos extends Fragment {
         barChart.setScaleEnabled( false );
         barChart.setDescription("Consumo");
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            initLFloatingButtons();
-        }
-
         return view;
     }
 
@@ -85,8 +85,8 @@ public class SimuladorDeAparelhos extends Fragment {
         floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Seu evento
-
+                Intent intent = new Intent(getContext(), AdicionarAparelhosAoSimuladorActivity.class);
+                startActivity(intent);
             }
         });
     }

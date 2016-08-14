@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 // Set click listener for button
                 btn.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        cameBluetoothInfo(nome[0]);
+                        chameBluetoothInfo(nome[0]);
                     }
                 });
                 //Add button to LinearLayout
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void cameBluetoothInfo(String nome) {
+    public void chameBluetoothInfo(String nome) {
         Intent intent = new Intent(this, BluetoothInfo.class);
         intent.putExtra("nome", nome);
         startActivity(intent);
