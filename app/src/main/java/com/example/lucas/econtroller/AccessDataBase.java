@@ -83,7 +83,6 @@ public class AccessDataBase {
     public List<AparelhosSimuladosDados> buscar(){
         List <AparelhosSimuladosDados> list = new ArrayList<AparelhosSimuladosDados>();
         String[] colunasProcuradas = new String[]{"_id","nome", "consumo_em_wats", "semanas_ligadas", "dias_ligados", "horas_ligados"};
-        db.beginTransaction();
 
         //A busca me devolve um cursor
         //Procurando (databasname, Colunas, Clasa where, parametros da where, groupBy, having, orderBy)

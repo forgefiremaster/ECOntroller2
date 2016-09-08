@@ -22,7 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/noActionBar"
+            />
         <activity android:name=".BluetoothInfo" />
         <activity android:name=".AdicionarAparelhosAoSimuladorActivity"></activity>
     </application>

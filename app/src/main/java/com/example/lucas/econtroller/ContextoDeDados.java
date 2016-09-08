@@ -30,7 +30,7 @@ public class ContextoDeDados extends SQLiteOpenHelper{
                 "consumo_em_wats FLOAT NOT NULL," +
                 "semanas_ligadas INTEGER NOT NULL," +
                 "dias_ligados INTEGER NOT NULL," +
-                "horas_ligados INTEGER;");
+                "horas_ligados INTEGER);");
     }
 
     @Override

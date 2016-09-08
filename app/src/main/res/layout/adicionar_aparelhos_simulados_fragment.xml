@@ -37,12 +37,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Consumo em Wats: "
+                android:text="Consumo em Watts: "
                 android:textSize="20dp"
                 />
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:id="@+id/consumo_watts"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,6 +99,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/horas"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CADASTRAR"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/cadastrar"
                 />
         </LinearLayout>
     </LinearLayout>

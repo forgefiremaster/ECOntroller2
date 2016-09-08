@@ -6,23 +6,15 @@ package com.example.lucas.econtroller;
 public class AparelhosSimuladosDados {
     private static String nome = "", consumoEmWats = "", semanasLigados = "", diasLigados = "", horasLigados = "", id = "";
     public void setId(String id){
-        this.id = id;
+        AparelhosSimuladosDados.id = id;
     }
     public void setNome(String nome){
-        this.nome = nome;
+        AparelhosSimuladosDados.nome = nome;
     }
-    public void setConsumoEmWats(String consumoEmWats){
-        this.consumoEmWats = consumoEmWats;
-    }
-    public void setSemanasLigados(String semanasLigados){
-        this.semanasLigados = semanasLigados;
-    }
-    public void setDiasLigados(String diasLigados){
-        this.diasLigados = diasLigados;
-    }
-    public void setHorasLigados(String horasLigados){
-        this.horasLigados = horasLigados;
-    }
+    public void setConsumoEmWats(String consumoEmWats){AparelhosSimuladosDados.consumoEmWats = consumoEmWats;}
+    public void setSemanasLigados(String semanasLigados){AparelhosSimuladosDados.semanasLigados = semanasLigados;}
+    public void setDiasLigados(String diasLigados){AparelhosSimuladosDados.diasLigados = diasLigados;}
+    public void setHorasLigados(String horasLigados){AparelhosSimuladosDados.horasLigados = horasLigados;}
     public String getNome(){
         return nome;
     }
