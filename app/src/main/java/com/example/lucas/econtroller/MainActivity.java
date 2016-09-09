@@ -1,14 +1,18 @@
 package com.example.lucas.econtroller;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,12 +26,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,23 +49,99 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Button parear;
     private boolean bluetoothEstaLigado = false;
 
+
+    RelativeLayout relativeLayout;
+    SwipeRefreshLayout swipeLayout ;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.teste);Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        relativeLayout = (RelativeLayout) findViewById(R.id.ligar);
+        listDevices = (LinearLayout) findViewById(R.id.aparelhosEncontrados);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        textView = (TextView) findViewById(R.id.text_ligar);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         BA = BluetoothAdapter.getDefaultAdapter();
-        listDevices = (LinearLayout) findViewById(R.id.aparelhosEncontrados);
+        if(BA != null){
+            mudaCorDorelativeLayoutLigar();
+        }
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        aSwitch = (Switch) findViewById(R.id.offOn);
+        //aSwitch = (Switch) findViewById(R.id.offOn);
+        //parear = (Button) findViewById(R.id.parear);
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ShowToast")
+            @Override
+            public void onClick(View v) {
+                if (BA == null) {
+
+                } else {
+                    if (BA.isEnabled()) {
+                        bluetoothEstaLigado = true;
+                        mudaCorDorelativeLayoutLigar();
+                    }else{
+                        bluetoothEstaLigado = false;
+                        mudaCorDorelativeLayoutLigar();
+                    }
+
+                    relativeLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            on();
+                            mudaCorDorelativeLayoutLigar();
+                        }
+                    });
+                }
+            }
+        });
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (BA == null) {
+
+                } else {
+                    if (BA.isEnabled()) {
+                        bluetoothEstaLigado = true;
+                    }else{
+                        bluetoothEstaLigado = false;
+                    }
+
+                    relativeLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            on();
+                            mudaCorDorelativeLayoutLigar();
+                        }
+                    });
+                }
+            }
+        });
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        swipeLayout.setColorSchemeColors(getResources().getColor(R.color.vermelho),getResources().getColor(R.color.azul),getResources().getColor(R.color.amarelo), getResources().getColor(R.color.green));
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeLayout.setRefreshing(true);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        list();
+                        swipeLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
+        /*
+
         if (BA == null) {
             Toast.makeText(this, new String(getResources().getString(R.string.dispositivoNaoSuporta)), Toast.LENGTH_SHORT).show();
         } else {
@@ -77,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     on();
                 }
             });
-            parear = (Button) findViewById(R.id.parear);
+
             parear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -86,7 +168,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
         }
 
+        */
+
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -145,7 +231,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             BA.disable();
             Toast.makeText(this, new String(getResources().getString(R.string.desligado)), Toast.LENGTH_LONG).show();
         }
-        mudaTextoECorDoSwitch();
     }
 
     public void visible() {
@@ -176,6 +261,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ll.setOrientation(LinearLayout.HORIZONTAL);
                 // Create TextView
                 TextView product = new TextView(this);
+                product.setTextColor(getResources().getColor(R.color.white));
                 product.setText("Nome: " + nome[j] + "    ");
                 ll.addView(product);
                 // Create Button
@@ -208,7 +294,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    private void mudaTextoECorDoSwitch() {
+    private void mudaCorDorelativeLayoutLigar(){
+        if (bluetoothEstaLigado) {
+            relativeLayout.setBackgroundResource(R.color.transparent);
+            textView.setTextColor(getResources().getColor(R.color.black));
+            textView.setText("LIGADO");
+            bluetoothEstaLigado = false;
+        } else {
+            relativeLayout.setBackgroundResource(R.drawable.retangular_button);
+            textView.setTextColor(getResources().getColor(R.color.white));
+            textView.setText("LIGAR");
+            bluetoothEstaLigado = false;
+        }
+    }
+
+    /*private void mudaTextoECorDoSwitch() {
         if (bluetoothEstaLigado) {
             aSwitch.setText("On");
             aSwitch.setTextColor(getResources().getColor(R.color.azul));
@@ -220,5 +320,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-    }
+    }*/
 }

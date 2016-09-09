@@ -13,4 +13,5 @@
     <color name="amarelo">#F88C06</color>
     <color name="azul">#00ccff</color>
     <color name="vermelho">#F13A38</color>
+    <color name="transparent"> #80FFFFFF</color>
 </resources>
