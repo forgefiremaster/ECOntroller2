@@ -14,7 +14,7 @@
             android:id="@+id/bck"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/light"
+            android:src="@drawable/pricipal_theme"
             android:scaleType="centerCrop" />
 
         <TextView

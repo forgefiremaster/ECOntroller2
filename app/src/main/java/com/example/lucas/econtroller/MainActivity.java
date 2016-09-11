@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -16,24 +14,20 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.teste);Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_main);Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -64,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listDevices = (LinearLayout) findViewById(R.id.aparelhosEncontrados);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         textView = (TextView) findViewById(R.id.text_ligar);
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -74,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(BA != null){
             mudaCorDorelativeLayoutLigar();
         }
-        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 165);
         //aSwitch = (Switch) findViewById(R.id.offOn);
         //parear = (Button) findViewById(R.id.parear);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+
         swipeLayout.setColorSchemeColors(getResources().getColor(R.color.vermelho),getResources().getColor(R.color.azul),getResources().getColor(R.color.amarelo), getResources().getColor(R.color.green));
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -140,36 +135,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }, 3000);
             }
         });
-        /*
-
-        if (BA == null) {
-            Toast.makeText(this, new String(getResources().getString(R.string.dispositivoNaoSuporta)), Toast.LENGTH_SHORT).show();
-        } else {
-            if (BA.isEnabled()) {
-                bluetoothEstaLigado = true;
-                mudaTextoECorDoSwitch();
-            }else{
-                bluetoothEstaLigado = false;
-                mudaTextoECorDoSwitch();
-            }
-
-            aSwitch.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    on();
-                }
-            });
-
-            parear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    list();
-                }
-            });
-        }
-
-        */
-
     }
 
 
@@ -259,16 +224,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // Create LinearLayout
                 LinearLayout ll = new LinearLayout(this);
                 ll.setOrientation(LinearLayout.HORIZONTAL);
-                // Create TextView
-                TextView product = new TextView(this);
-                product.setTextColor(getResources().getColor(R.color.white));
-                product.setText("Nome: " + nome[j] + "    ");
-                ll.addView(product);
                 // Create Button
                 final Button btn = new Button(this);
                 // Give button an ID
                 btn.setId(j + 1);
                 btn.setText(nome[j]);
+                btn.setBackgroundResource(R.drawable.buttons_background);
+                btn.setTextSize(20);
                 // set the layoutParams on the button
                 btn.setLayoutParams(params);
                 // Set click listener for button
@@ -307,18 +269,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             bluetoothEstaLigado = false;
         }
     }
-
-    /*private void mudaTextoECorDoSwitch() {
-        if (bluetoothEstaLigado) {
-            aSwitch.setText("On");
-            aSwitch.setTextColor(getResources().getColor(R.color.azul));
-            bluetoothEstaLigado = false;
-        } else {
-            aSwitch.setText("Off");
-            aSwitch.setTextColor(getResources().getColor(R.color.vermelho));
-            bluetoothEstaLigado = true;
-        }
-
-
-    }*/
 }
