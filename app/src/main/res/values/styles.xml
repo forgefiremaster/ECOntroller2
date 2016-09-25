@@ -8,7 +8,9 @@
         <item name="colorAccent">@color/white</item>
     </style>
 
-    <style name="noActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <style
+        name="noActionBar"
+        parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryDark">@color/green3</item>
         <item name="colorAccent">@color/white</item>
@@ -22,5 +24,11 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.Custom" parent="@android:style/Theme.DeviceDefault">
+        <item name="windowActionBar">false</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
 
 </resources>

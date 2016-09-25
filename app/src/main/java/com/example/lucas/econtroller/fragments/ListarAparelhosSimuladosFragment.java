@@ -28,15 +28,15 @@ public class ListarAparelhosSimuladosFragment extends Fragment {
         View view = inflater.inflate(R.layout.listar_aparelhos_simulados_fragment, container, false);
         listView = (ListView) view.findViewById(R.id.lista);
     
-        listarAparelhos();
+        //listarAparelhos();
         
         return view;
     }
 
-    private void listarAparelhos() {
+    /*private void listarAparelhos() {
         AccessDataBase accessDataBase = new AccessDataBase(getContext());
         List<AparelhosSimuladosDados> list = accessDataBase.buscar();
         ListAdapter listAdapter = new ArrayAdapter<AparelhosSimuladosDados>(getContext(), android.R.layout.simple_list_item_1,list);
         listView.setAdapter(listAdapter);
-    }
+    }*/
 }

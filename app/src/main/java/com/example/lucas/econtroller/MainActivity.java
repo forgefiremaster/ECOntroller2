@@ -1,6 +1,5 @@
 package com.example.lucas.econtroller;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -21,10 +20,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Set;
@@ -33,20 +28,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private BluetoothAdapter BA;
     private Set<BluetoothDevice> pairedDevices;
-    ListView lv;
     String[] endereco = new String[15];
     String[] lista = new String[15];
     String[] nome = new String[15];
     private LinearLayout listDevices;
     LinearLayout.LayoutParams params = null;
-    Switch aSwitch;
-    Button parear;
     private boolean bluetoothEstaLigado = false;
+    Button button;
 
-
-    RelativeLayout relativeLayout;
     SwipeRefreshLayout swipeLayout ;
-    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +44,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        relativeLayout = (RelativeLayout) findViewById(R.id.ligar);
         listDevices = (LinearLayout) findViewById(R.id.aparelhosEncontrados);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        textView = (TextView) findViewById(R.id.text_ligar);
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        button = (Button) findViewById(R.id.ligar_button);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -66,61 +55,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         BA = BluetoothAdapter.getDefaultAdapter();
-        if(BA != null){
-            mudaCorDorelativeLayoutLigar();
-        }
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 165);
-        //aSwitch = (Switch) findViewById(R.id.offOn);
-        //parear = (Button) findViewById(R.id.parear);
-        relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ShowToast")
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (BA == null) {
-
-                } else {
-                    if (BA.isEnabled()) {
-                        bluetoothEstaLigado = true;
-                        mudaCorDorelativeLayoutLigar();
-                    }else{
-                        bluetoothEstaLigado = false;
-                        mudaCorDorelativeLayoutLigar();
-                    }
-
-                    relativeLayout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            on();
-                            mudaCorDorelativeLayoutLigar();
-                        }
-                    });
+                if(BA == null){
+                    Toast.makeText(getBaseContext(),"Seu aparelho não suporta o bluetooth.",Toast.LENGTH_SHORT).show();
+                }else{
+                    on();
                 }
             }
         });
-
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (BA == null) {
-
-                } else {
-                    if (BA.isEnabled()) {
-                        bluetoothEstaLigado = true;
-                    }else{
-                        bluetoothEstaLigado = false;
-                    }
-
-                    relativeLayout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            on();
-                            mudaCorDorelativeLayoutLigar();
-                        }
-                    });
-                }
-            }
-        });
-
         swipeLayout.setColorSchemeColors(getResources().getColor(R.color.vermelho),getResources().getColor(R.color.azul),getResources().getColor(R.color.amarelo), getResources().getColor(R.color.green));
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -132,13 +77,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         list();
                         swipeLayout.setRefreshing(false);
                     }
-                }, 3000);
+                }, 2800);
             }
         });
     }
-
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -171,13 +113,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_simulador) {
+            Intent intent = new Intent(this, AdicionarAparelhosAoSimuladorActivity.class);
+            startActivity(intent);
         }else if (id == R.id.nav_aparelhos_conectados ){
-        }
 
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
@@ -189,15 +135,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!BA.isEnabled()) {
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(turnOn, 0);
-            Toast.makeText(this, new String(getResources().getString(R.string.ligando)), Toast.LENGTH_LONG).show();
-
-        } else {
-            //desligar o bluetooth
-            BA.disable();
-            Toast.makeText(this, new String(getResources().getString(R.string.desligado)), Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(),"Ligando.",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getBaseContext(),"O Bluetooth já está ligado.",Toast.LENGTH_SHORT).show();
         }
     }
 
+    public void disable(){
+        //desligar o bluetooth
+        BA.disable();
+        Toast.makeText(this, new String(getResources().getString(R.string.desligado)), Toast.LENGTH_LONG).show();
+    }
     public void visible() {
         if (BA.isEnabled()) {
             Intent getVisible = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
@@ -231,9 +179,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 btn.setText(nome[j]);
                 btn.setBackgroundResource(R.drawable.buttons_background);
                 btn.setTextSize(20);
-                // set the layoutParams on the button
+               //  set the layoutParams on the button
                 btn.setLayoutParams(params);
-                // Set click listener for button
+               //  Set click listener for button
                 btn.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         chameBluetoothInfo(nome[0]);
@@ -254,19 +202,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, BluetoothInfo.class);
         intent.putExtra("nome", nome);
         startActivity(intent);
-    }
-
-    private void mudaCorDorelativeLayoutLigar(){
-        if (bluetoothEstaLigado) {
-            relativeLayout.setBackgroundResource(R.color.transparent);
-            textView.setTextColor(getResources().getColor(R.color.black));
-            textView.setText("LIGADO");
-            bluetoothEstaLigado = false;
-        } else {
-            relativeLayout.setBackgroundResource(R.drawable.retangular_button);
-            textView.setTextColor(getResources().getColor(R.color.white));
-            textView.setText("LIGAR");
-            bluetoothEstaLigado = false;
-        }
     }
 }

@@ -13,7 +13,7 @@
     <color name="amarelo">#F88C06</color>
     <color name="azul">#00ccff</color>
     <color name="vermelho">#F13A38</color>
-    <color name="transparent"> #80FFFFFF</color>
     <color name="plano_de_fundo">#3A4459</color>
     <color name="button_background1">#50C2F2</color>
+    <color name="black_alpha_40">#66000000</color>
 </resources>

@@ -27,7 +27,7 @@ public class ContextoDeDados extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE aparelhos_simulados(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome TEXT NOT NULL," +
-                "consumo_em_wats FLOAT NOT NULL," +
+                "consumo_em_wats TEXT NOT NULL," +
                 "semanas_ligadas INTEGER NOT NULL," +
                 "dias_ligados INTEGER NOT NULL," +
                 "horas_ligados INTEGER);");

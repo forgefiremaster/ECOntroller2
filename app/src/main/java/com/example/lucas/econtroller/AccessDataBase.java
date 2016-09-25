@@ -67,7 +67,6 @@ public class AccessDataBase {
     public void deletar(AparelhosSimuladosDados aparelhosSimuladosDados){
         db.beginTransaction();
         try{
-
             //Deletando (databasname, where, parametros da where)
             db.delete("ECOntrollerBaseDeDados", "_id = ?", new String[]{""+ aparelhosSimuladosDados.getId()});
             db.setTransactionSuccessful();
@@ -80,14 +79,13 @@ public class AccessDataBase {
     }
 
     //PROCURAR
-    public List<AparelhosSimuladosDados> buscar(){
+   /* public List<AparelhosSimuladosDados> buscar(){
         List <AparelhosSimuladosDados> list = new ArrayList<AparelhosSimuladosDados>();
         String[] colunasProcuradas = new String[]{"_id","nome", "consumo_em_wats", "semanas_ligadas", "dias_ligados", "horas_ligados"};
-
         //A busca me devolve um cursor
         //Procurando (databasname, Colunas, Clasa where, parametros da where, groupBy, having, orderBy)
-        Cursor cursor = db.query("ECOntrollerBaseDeDados", colunasProcuradas, null, null, null, null, "nome ASC" );//cursor é tipo um RecordSet
-
+        Cursor cursor; //= db.query("ECOntrollerBaseDeDados", colunasProcuradas, null, null, null, null, null ,null );//cursor é tipo um RecordSet
+        cursor = db.query("ECOntrollerBaseDeDados", colunasProcuradas, null, null, null, null, null, null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
             do{
@@ -102,7 +100,7 @@ public class AccessDataBase {
             }while (cursor.moveToNext());
         }
         return list;
-    }
+    }*/
 
 
 
