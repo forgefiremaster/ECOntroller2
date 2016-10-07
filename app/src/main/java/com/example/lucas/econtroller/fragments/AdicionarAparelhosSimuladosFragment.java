@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.lucas.econtroller.AccessDataBase;
-import com.example.lucas.econtroller.AparelhosSimuladosDados;
+import com.example.lucas.econtroller.databaseActivity.AccessDataBase;
+import com.example.lucas.econtroller.databaseActivity.AparelhosSimuladosDados;
 import com.example.lucas.econtroller.R;
 
 /**

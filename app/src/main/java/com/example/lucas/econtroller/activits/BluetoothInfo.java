@@ -1,29 +1,35 @@
-package com.example.lucas.econtroller;
+package com.example.lucas.econtroller.activits;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.lucas.econtroller.R;
+import com.example.lucas.econtroller.adaptersActivity.MyAdapter;
 
 
 /**
- * Created by Lucas on 13/08/2016.
+ * Created by Lucas on 04/08/2016.
  */
-public class AdicionarAparelhosAoSimuladorActivity extends AppCompatActivity implements ActionBar.TabListener {
+public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabListener {
     String nome = "";
-    ViewPager viewPager;
     public ActionBar actionBar;
+    ViewPager viewPager;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.adicionar_aparelhos_ao_simulador_layout);
+        setContentView(R.layout.bluetooth_info_layout);
+        //pegandos os parâmetros enviados
+        Intent intent = getIntent();
+        nome = intent.getStringExtra("nome");
 
         //Escutando a view Pager
-        viewPager = (ViewPager) findViewById(R.id.container_simulador);
+        viewPager = (ViewPager) findViewById(R.id.container);
         //Crio um novo MyAdapter passando como parametro um FragmentManager para seu construtor
-        viewPager.setAdapter(new MyAdapterSimulador(getSupportFragmentManager()));
+        viewPager.setAdapter(new MyAdapter((getSupportFragmentManager())));
         //Criando um change para atulaizar para o actionBar ao passar o dedo
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -34,10 +40,13 @@ public class AdicionarAparelhosAoSimuladorActivity extends AppCompatActivity imp
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    actionBar.setTitle(new String(getResources().getString(R.string.adicionar)));
-                } else{
-                    actionBar.setTitle(new String(getResources().getString(R.string.listar)));
+                    actionBar.setTitle(new String(getResources().getString(R.string.aparelhos)));
+                } else if (position == 1) {
+                    actionBar.setTitle(new String(getResources().getString(R.string.consumo)));
+                } else {
+                    actionBar.setTitle(new String(getResources().getString(R.string.simulador)));
                 }
+
             }
 
             @Override
@@ -56,17 +65,23 @@ public class AdicionarAparelhosAoSimuladorActivity extends AppCompatActivity imp
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //Setando títuloas na TAB
-        ActionBar.Tab tab1 = actionBar.newTab().setText(new String(getResources().getString(R.string.adicionar)));
+        ActionBar.Tab tab1 = actionBar.newTab().setText(new String(getResources().getString(R.string.aparelhos)));
         tab1.setTabListener(this);
-        ActionBar.Tab tab2 = actionBar.newTab().setText(new String(getResources().getString(R.string.listar)));
+        ActionBar.Tab tab2 = actionBar.newTab().setText(new String(getResources().getString(R.string.consumo)));
         tab2.setTabListener(this);
+        ActionBar.Tab tab3 = actionBar.newTab().setText(new String(getResources().getString(R.string.simulador)));
+        tab3.setTabListener(this);
 
         //Adicionando as tabs no action bar
         actionBar.addTab(tab1);
         actionBar.addTab(tab2);
+        actionBar.addTab(tab3);
 
     }
 
+    public String getMyData() {
+        return nome;
+    }
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
@@ -83,6 +98,5 @@ public class AdicionarAparelhosAoSimuladorActivity extends AppCompatActivity imp
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
     }
+
 }
-
-

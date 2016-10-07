@@ -6,16 +6,14 @@ import android.graphics.Outline;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.PopupMenu;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageButton;
 
-import com.example.lucas.econtroller.AdicionarAparelhosAoSimuladorActivity;
+import com.example.lucas.econtroller.activits.AdicionarAparelhosAoSimuladorActivity;
 import com.example.lucas.econtroller.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;

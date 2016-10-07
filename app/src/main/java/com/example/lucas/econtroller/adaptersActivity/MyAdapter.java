@@ -1,4 +1,4 @@
-package com.example.lucas.econtroller;
+package com.example.lucas.econtroller.adaptersActivity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

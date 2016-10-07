@@ -1,4 +1,4 @@
-package com.example.lucas.econtroller;
+package com.example.lucas.econtroller.databaseActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,11 +14,11 @@ import java.util.List;
  */
 public class AccessDataBase {
     private SQLiteDatabase db;
+
     public AccessDataBase(Context context){
         ContextoDeDados contextoDeDados = new ContextoDeDados(context);//Cria objeto para conexão
         contextoDeDados.getWritableDatabase();//Coloca em modo de escrita, e cria conexão
     }
-
     //INSERT
     public void inserir(AparelhosSimuladosDados aparelhosSimuladosDados){
         db.beginTransaction();
@@ -79,29 +79,29 @@ public class AccessDataBase {
     }
 
     //PROCURAR
-   /* public List<AparelhosSimuladosDados> buscar(){
-        List <AparelhosSimuladosDados> list = new ArrayList<AparelhosSimuladosDados>();
-        String[] colunasProcuradas = new String[]{"_id","nome", "consumo_em_wats", "semanas_ligadas", "dias_ligados", "horas_ligados"};
-        //A busca me devolve um cursor
-        //Procurando (databasname, Colunas, Clasa where, parametros da where, groupBy, having, orderBy)
-        Cursor cursor; //= db.query("ECOntrollerBaseDeDados", colunasProcuradas, null, null, null, null, null ,null );//cursor é tipo um RecordSet
-        cursor = db.query("ECOntrollerBaseDeDados", colunasProcuradas, null, null, null, null, null, null);
-        if(cursor.getCount() > 0){
-            cursor.moveToFirst();
-            do{
-                AparelhosSimuladosDados aparelhosSimuladosDados = new AparelhosSimuladosDados();
-                aparelhosSimuladosDados.setId(cursor.getString(0));
-                aparelhosSimuladosDados.setNome(cursor.getString(1));
-                aparelhosSimuladosDados.setConsumoEmWats(cursor.getString(2));
-                aparelhosSimuladosDados.setSemanasLigados(cursor.getString(3));
-                aparelhosSimuladosDados.setDiasLigados(cursor.getString(4));
-                aparelhosSimuladosDados.setHorasLigados(cursor.getString(5));
-                list.add(aparelhosSimuladosDados);
-            }while (cursor.moveToNext());
-        }
-        return list;
-    }*/
-
+   public List<AparelhosSimuladosDados> buscar() {
+       List<AparelhosSimuladosDados> list = new ArrayList<AparelhosSimuladosDados>();
+       String[] colunasProcuradas = new String[]{"_id", "nome", "consumo_em_wats", "semanas_ligadas", "dias_ligados", "horas_ligados"};
+       //A busca me devolve um cursor
+       //Procurando (databasname, Colunas, Clasa where, parametros da where, groupBy, having, orderBy)
+       Cursor cursor; //= db.query("ECOntrollerBaseDeDados", colunasProcuradas, null, null, null, null, null ,null );//cursor é tipo um RecordSet
+       cursor = db.query("ECOntrollerBaseDeDados", colunasProcuradas, null, null, null, null, null, null);
+       //cursor = db.rawQuery("SELECT * FROM aparelhos_simulados", null);
+       if (cursor.getCount() > 0) {
+           cursor.moveToFirst();
+           do {
+               AparelhosSimuladosDados aparelhosSimuladosDados = new AparelhosSimuladosDados();
+               aparelhosSimuladosDados.setId(cursor.getString(0));
+               aparelhosSimuladosDados.setNome(cursor.getString(1));
+               aparelhosSimuladosDados.setConsumoEmWats(cursor.getString(2));
+               aparelhosSimuladosDados.setSemanasLigados(cursor.getString(3));
+               aparelhosSimuladosDados.setDiasLigados(cursor.getString(4));
+               aparelhosSimuladosDados.setHorasLigados(cursor.getString(5));
+               list.add(aparelhosSimuladosDados);
+           } while (cursor.moveToNext());
+       }
+       return list;
+   }
 
 
 }

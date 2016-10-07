@@ -1,4 +1,4 @@
-package com.example.lucas.econtroller;
+package com.example.lucas.econtroller.databaseActivity;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,7 +25,7 @@ public class ContextoDeDados extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE aparelhos_simulados(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        db.execSQL("CREATE TABLE IF NOT EXISTS aparelhos_simulados(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome TEXT NOT NULL," +
                 "consumo_em_wats TEXT NOT NULL," +
                 "semanas_ligadas INTEGER NOT NULL," +

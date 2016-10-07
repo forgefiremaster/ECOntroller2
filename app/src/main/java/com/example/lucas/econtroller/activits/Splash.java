@@ -1,9 +1,11 @@
-package com.example.lucas.econtroller;
+package com.example.lucas.econtroller.activits;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.lucas.econtroller.R;
 
 /**
  * Created by Lucas on 03/08/2016.

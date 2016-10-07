@@ -14,7 +14,7 @@
 
         <!-- Nesta activity eu retiro a actionbar -->
         <activity
-            android:name=".Splash"
+            android:name=".activits.Splash"
             android:theme="@style/noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activits.MainActivity"
             android:theme="@style/noActionBar"
             />
-        <activity android:name=".BluetoothInfo" />
-        <activity android:name=".AdicionarAparelhosAoSimuladorActivity"></activity>
+        <activity android:name=".activits.BluetoothInfo" />
+        <activity android:name=".activits.AdicionarAparelhosAoSimuladorActivity"></activity>
     </application>
 
 </manifest>

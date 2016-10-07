@@ -1,4 +1,4 @@
-package com.example.lucas.econtroller;
+package com.example.lucas.econtroller.activits;
 
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
@@ -21,6 +21,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.example.lucas.econtroller.R;
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -55,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         BA = BluetoothAdapter.getDefaultAdapter();
-        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 165);
+        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 120);
+        params.setMargins(5,5,5,5);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onRefresh() {
                 swipeLayout.setRefreshing(true);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         swipeLayout.setRefreshing(false);
                     }
                 }, 2800);
+                Toast.makeText(MainActivity.this, "Encontrando dipositivos.", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -129,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     public void on() {
         //Se o bloetooth estiver desligado então liga
         if (!BA.isEnabled()) {
@@ -140,7 +145,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getBaseContext(),"O Bluetooth já está ligado.",Toast.LENGTH_SHORT).show();
         }
     }
-
     public void disable(){
         //desligar o bluetooth
         BA.disable();
@@ -155,8 +159,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(MainActivity.this, "Ligue o Bluetooth.", Toast.LENGTH_LONG).show();
         }
     }
-
-
     public void list() {
         if (BA.isEnabled()) {
             final ArrayAdapter adapter;
@@ -177,8 +179,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // Give button an ID
                 btn.setId(j + 1);
                 btn.setText(nome[j]);
-                btn.setBackgroundResource(R.drawable.buttons_background);
+                btn.getBackground().setAlpha(10);
                 btn.setTextSize(20);
+                btn.setTextColor(getResources().getColor(R.color.white));
                //  set the layoutParams on the button
                 btn.setLayoutParams(params);
                //  Set click listener for button
@@ -193,7 +196,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 listDevices.addView(ll);
                 j++;
             }
-            Toast.makeText(MainActivity.this, "Encontrando dipositivos.", Toast.LENGTH_LONG).show();
         }
     }
 
