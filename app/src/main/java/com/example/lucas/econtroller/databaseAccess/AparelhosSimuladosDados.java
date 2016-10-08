@@ -1,4 +1,4 @@
-package com.example.lucas.econtroller.databaseActivity;
+package com.example.lucas.econtroller.databaseAccess;
 
 /**
  * Created by Lucas on 13/08/2016.

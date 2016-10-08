@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageButton;
 
-import com.example.lucas.econtroller.activits.AdicionarAparelhosAoSimuladorActivity;
+import com.example.lucas.econtroller.activitys.AdicionarAparelhosAoSimuladorActivity;
 import com.example.lucas.econtroller.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;

@@ -1,9 +1,12 @@
 package com.example.lucas.econtroller.adaptersActivity;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.lucas.econtroller.activitys.AdicionarAparelhosAoSimuladorActivity;
+import com.example.lucas.econtroller.activitys.BluetoothInfo;
 import com.example.lucas.econtroller.fragments.AdicionarAparelhosSimuladosFragment;
 import com.example.lucas.econtroller.fragments.ListarAparelhosSimuladosFragment;
 
@@ -18,6 +21,7 @@ public class MyAdapterSimulador extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+
         if (position == 0){
             fragment = new AdicionarAparelhosSimuladosFragment();
         }else{

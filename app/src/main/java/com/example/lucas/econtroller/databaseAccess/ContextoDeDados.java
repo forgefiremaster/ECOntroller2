@@ -1,4 +1,4 @@
-package com.example.lucas.econtroller.databaseActivity;
+package com.example.lucas.econtroller.databaseAccess;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

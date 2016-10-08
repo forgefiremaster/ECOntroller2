@@ -1,4 +1,4 @@
-package com.example.lucas.econtroller.activits;
+package com.example.lucas.econtroller.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,8 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_layout);
 
-        new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(
+                new Runnable() {
             /*
              * Exibindo splash com um timer.
              */

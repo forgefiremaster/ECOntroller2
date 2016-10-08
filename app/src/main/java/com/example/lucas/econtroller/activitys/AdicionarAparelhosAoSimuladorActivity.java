@@ -1,6 +1,5 @@
-package com.example.lucas.econtroller.activits;
+package com.example.lucas.econtroller.activitys;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -8,28 +7,25 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.lucas.econtroller.R;
-import com.example.lucas.econtroller.adaptersActivity.MyAdapter;
+import com.example.lucas.econtroller.adaptersActivity.MyAdapterSimulador;
 
 
 /**
- * Created by Lucas on 04/08/2016.
+ * Created by Lucas on 13/08/2016.
  */
-public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabListener {
+public class AdicionarAparelhosAoSimuladorActivity extends AppCompatActivity implements ActionBar.TabListener {
     String nome = "";
-    public ActionBar actionBar;
     ViewPager viewPager;
+    public ActionBar actionBar;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bluetooth_info_layout);
-        //pegandos os parâmetros enviados
-        Intent intent = getIntent();
-        nome = intent.getStringExtra("nome");
+        setContentView(R.layout.adicionar_aparelhos_ao_simulador_layout);
 
         //Escutando a view Pager
-        viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager = (ViewPager) findViewById(R.id.container_simulador);
         //Crio um novo MyAdapter passando como parametro um FragmentManager para seu construtor
-        viewPager.setAdapter(new MyAdapter((getSupportFragmentManager())));
+        viewPager.setAdapter(new MyAdapterSimulador(getSupportFragmentManager()));
         //Criando um change para atulaizar para o actionBar ao passar o dedo
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -40,13 +36,10 @@ public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabLis
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    actionBar.setTitle(new String(getResources().getString(R.string.aparelhos)));
-                } else if (position == 1) {
-                    actionBar.setTitle(new String(getResources().getString(R.string.consumo)));
-                } else {
-                    actionBar.setTitle(new String(getResources().getString(R.string.simulador)));
+                    actionBar.setTitle(new String(getResources().getString(R.string.adicionar)));
+                } else{
+                    actionBar.setTitle(new String(getResources().getString(R.string.listar)));
                 }
-
             }
 
             @Override
@@ -65,23 +58,17 @@ public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabLis
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //Setando títuloas na TAB
-        ActionBar.Tab tab1 = actionBar.newTab().setText(new String(getResources().getString(R.string.aparelhos)));
+        ActionBar.Tab tab1 = actionBar.newTab().setText(new String(getResources().getString(R.string.adicionar)));
         tab1.setTabListener(this);
-        ActionBar.Tab tab2 = actionBar.newTab().setText(new String(getResources().getString(R.string.consumo)));
+        ActionBar.Tab tab2 = actionBar.newTab().setText(new String(getResources().getString(R.string.listar)));
         tab2.setTabListener(this);
-        ActionBar.Tab tab3 = actionBar.newTab().setText(new String(getResources().getString(R.string.simulador)));
-        tab3.setTabListener(this);
 
         //Adicionando as tabs no action bar
         actionBar.addTab(tab1);
         actionBar.addTab(tab2);
-        actionBar.addTab(tab3);
 
     }
 
-    public String getMyData() {
-        return nome;
-    }
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
@@ -98,5 +85,6 @@ public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabLis
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
     }
-
 }
+
+

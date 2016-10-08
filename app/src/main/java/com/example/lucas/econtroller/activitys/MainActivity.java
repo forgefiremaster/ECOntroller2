@@ -1,4 +1,4 @@
-package com.example.lucas.econtroller.activits;
+package com.example.lucas.econtroller.activitys;
 
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
