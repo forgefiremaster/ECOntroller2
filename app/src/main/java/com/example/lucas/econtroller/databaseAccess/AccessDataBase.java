@@ -86,6 +86,7 @@ public class AccessDataBase {
     public ArrayAdapter<String> buscaDados(Context context){
         ArrayAdapter<String> adpBusca = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1);
         String nome;
+        String consumoEmWats;
 
         //Armazena os registros que foram consultados na classe Cursor; (como se fosse um Recorset)
         Cursor cursor = db.query("aparelhos_simulados", null, null ,null, null, null, null, null);
@@ -93,7 +94,8 @@ public class AccessDataBase {
             cursor.moveToFirst();
             do{
                 nome = cursor.getString(1);
-                adpBusca.add(nome);
+                consumoEmWats = cursor.getString(2);
+                adpBusca.add(nome + " - " + consumoEmWats);
             }while (cursor.moveToNext());
         }else{
             Toast.makeText(context, "Não achei nada!!.", Toast.LENGTH_LONG).show();

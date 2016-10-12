@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String[] nome = new String[15];
     private LinearLayout listDevices;
     LinearLayout.LayoutParams params = null;
-    private boolean bluetoothEstaLigado = false;
     Button button;
 
     SwipeRefreshLayout swipeLayout ;
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         button = (Button) findViewById(R.id.ligar_button);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -86,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "Encontrando dipositivos.", Toast.LENGTH_LONG).show();
             }
         });
+
+
     }
     @Override
     public void onBackPressed() {
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_simulador) {
-            Intent intent = new Intent(this, AdicionarAparelhosAoSimuladorActivity.class);
+            Intent intent = new Intent(this, SimuladorActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_aparelhos_conectados ){
 

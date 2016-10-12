@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageButton;
 
-import com.example.lucas.econtroller.activitys.AdicionarAparelhosAoSimuladorActivity;
+import com.example.lucas.econtroller.activitys.SimuladorActivity;
 import com.example.lucas.econtroller.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -83,7 +83,7 @@ public class SimuladorDeAparelhos extends Fragment {
         floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), AdicionarAparelhosAoSimuladorActivity.class);
+                Intent intent = new Intent(getContext(), SimuladorActivity.class);
                 startActivity(intent);
             }
         });

@@ -13,14 +13,16 @@ import com.example.lucas.econtroller.adaptersActivity.MyAdapterSimulador;
 /**
  * Created by Lucas on 13/08/2016.
  */
-public class AdicionarAparelhosAoSimuladorActivity extends AppCompatActivity implements ActionBar.TabListener {
+public class SimuladorActivity extends AppCompatActivity implements ActionBar.TabListener {
     String nome = "";
     ViewPager viewPager;
     public ActionBar actionBar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.adicionar_aparelhos_ao_simulador_layout);
+        setContentView(R.layout.simulador_layout_activity);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Escutando a view Pager
         viewPager = (ViewPager) findViewById(R.id.container_simulador);
