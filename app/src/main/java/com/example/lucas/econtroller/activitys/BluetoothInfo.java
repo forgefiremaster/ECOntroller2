@@ -22,6 +22,8 @@ public class BluetoothInfo extends AppCompatActivity implements ActionBar.TabLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bluetooth_info_layout);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //pegandos os parâmetros enviados
         Intent intent = getIntent();
         nome = intent.getStringExtra("nome");

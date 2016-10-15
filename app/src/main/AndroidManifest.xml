@@ -29,7 +29,9 @@
         <activity
             android:name=".activitys.MainActivity"
             android:theme="@style/noActionBar" />
-        <activity android:name=".activitys.BluetoothInfo" />
+        <activity android:name=".activitys.BluetoothInfo" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activitys.MainActivity"></meta-data>
+        </activity>
         <activity android:name=".activitys.SimuladorActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activitys.MainActivity"></meta-data>
         </activity>

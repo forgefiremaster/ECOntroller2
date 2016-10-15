@@ -4,16 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 import android.util.Log;
-import android.util.Pair;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.example.lucas.econtroller.fragments.ListarAparelhosSimuladosFragment;
+import com.example.lucas.econtroller.controllers.AparelhosSimuladosDados;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Lucas on 13/08/2016.
@@ -23,6 +20,11 @@ public class AccessDataBase {
     private ContextoDeDados contextoDeDados;
     private ArrayList<Integer> id_aparelhos;
     private ArrayAdapter< String> adpBusca;
+    private ArrayList<String> nomes_aparelhos;
+    private ArrayList<String> semanas_aparelhos;
+    private ArrayList<String> dias_aparelhos;
+    private ArrayList<String> horas_aparelhos;
+    private ArrayList<String> watts_aparelhos;
 
     public AccessDataBase(SQLiteDatabase db){
         this.db = db;
@@ -122,4 +124,86 @@ public class AccessDataBase {
         cursor.close();
         return id_aparelhos;
     }
+
+    public int retornaQuantidadeDeAparelhosCadastrados(Context context){
+        int quantidade = 0;
+        Cursor cursor = db.query("aparelhos_simulados", null, null ,null, null, null, null, null);
+        if(cursor.getCount() > 0){
+            quantidade = cursor.getCount();
+        }
+        cursor.close();
+        return  quantidade;
+    }
+
+    public ArrayList<String> getNomes_aparelhos(Context context){
+        nomes_aparelhos = new ArrayList<>();
+        Cursor cursor = db.query("aparelhos_simulados", null, null ,null, null, null, null, null);
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do{
+                nomes_aparelhos.add(cursor.getString(1));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return nomes_aparelhos;
+    }
+
+    public ArrayList<String> getWatts_aparelhos(Context context){
+        watts_aparelhos = new ArrayList<>();
+        Cursor cursor = db.query("aparelhos_simulados", null, null ,null, null, null, null, null);
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do{
+                watts_aparelhos.add(cursor.getString(2));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return watts_aparelhos;
+    }
+
+    public ArrayList<String> getSemanas_aparelhos(Context context){
+        semanas_aparelhos = new ArrayList<>();
+        Cursor cursor = db.query("aparelhos_simulados", null, null ,null, null, null, null, null);
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do{
+                semanas_aparelhos.add(cursor.getString(3));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return semanas_aparelhos;
+    }
+
+    public ArrayList<String> getDias_aparelhos(Context context){
+        dias_aparelhos = new ArrayList<>();
+        Cursor cursor = db.query("aparelhos_simulados", null, null ,null, null, null, null, null);
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do{
+                dias_aparelhos.add(cursor.getString(4));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return dias_aparelhos;
+    }
+
+    public ArrayList<String> getHoras_aparelhos(Context context){
+        horas_aparelhos = new ArrayList<>();
+        Cursor cursor = db.query("aparelhos_simulados", null, null ,null, null, null, null, null);
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do{
+                Log.d("ADebugTag", "Value: " + cursor.getString(5));
+                horas_aparelhos.add(cursor.getString(5));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return horas_aparelhos;
+    }
+
+
+
+
+
+
 }

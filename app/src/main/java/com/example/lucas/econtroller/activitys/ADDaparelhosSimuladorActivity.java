@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.lucas.econtroller.R;
 import com.example.lucas.econtroller.databaseAccess.AccessDataBase;
-import com.example.lucas.econtroller.databaseAccess.AparelhosSimuladosDados;
+import com.example.lucas.econtroller.controllers.AparelhosSimuladosDados;
 import com.example.lucas.econtroller.databaseAccess.ContextoDeDados;
 
 public class ADDaparelhosSimuladorActivity extends AppCompatActivity {

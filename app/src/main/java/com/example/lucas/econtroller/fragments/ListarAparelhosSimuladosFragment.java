@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.example.lucas.econtroller.activitys.ADDaparelhosSimuladorActivity;
 import com.example.lucas.econtroller.databaseAccess.AccessDataBase;
 import com.example.lucas.econtroller.R;
-import com.example.lucas.econtroller.databaseAccess.AparelhosSimuladosDados;
+import com.example.lucas.econtroller.controllers.AparelhosSimuladosDados;
 import com.example.lucas.econtroller.databaseAccess.ContextoDeDados;
 
 import java.util.ArrayList;
@@ -76,7 +76,6 @@ public class ListarAparelhosSimuladosFragment extends Fragment {
         try{
             contextoDeDados = new ContextoDeDados(getContext());
             db = contextoDeDados.getWritableDatabase();
-            db = contextoDeDados.getWritableDatabase();
             accessDataBase = new AccessDataBase(db);
             arrayAdapter = accessDataBase.buscaDados(context);;
             listView.setAdapter(arrayAdapter);
@@ -101,9 +100,9 @@ public class ListarAparelhosSimuladosFragment extends Fragment {
             if (deletou){
                 arrayAdapter.remove(arrayAdapter.getItem(posicao));
                 arrayAdapter.notifyDataSetChanged();
-                Toast.makeText(context, "Dispositivo deletado com successo", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Dispositivo deletado com successo", Toast.LENGTH_SHORT).show();
             }else {
-                Toast.makeText(context, "Error. Ao deletar.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Error. Ao deletar.", Toast.LENGTH_SHORT).show();
             }
         }
         db.close();

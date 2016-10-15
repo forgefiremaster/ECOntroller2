@@ -16,4 +16,6 @@
     <string name="title_activity_adicionar_aparelho_simulado">AdicionarAparelhoSimulado</string>
     <string name="adicionar">ADICIONAR</string>
     <string name="listar">LISTAR</string>
+    <string name="gasto">GASTO</string>
+    <string name="cadastros">CADASTROS</string>
 </resources>

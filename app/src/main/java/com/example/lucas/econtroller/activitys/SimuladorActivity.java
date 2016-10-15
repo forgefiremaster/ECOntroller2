@@ -38,9 +38,9 @@ public class SimuladorActivity extends AppCompatActivity implements ActionBar.Ta
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    actionBar.setTitle(new String(getResources().getString(R.string.adicionar)));
+                    actionBar.setTitle(new String(getResources().getString(R.string.gasto)));
                 } else{
-                    actionBar.setTitle(new String(getResources().getString(R.string.listar)));
+                    actionBar.setTitle(new String(getResources().getString(R.string.cadastros)));
                 }
             }
 
@@ -60,9 +60,9 @@ public class SimuladorActivity extends AppCompatActivity implements ActionBar.Ta
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //Setando títuloas na TAB
-        ActionBar.Tab tab1 = actionBar.newTab().setText(new String(getResources().getString(R.string.adicionar)));
+        ActionBar.Tab tab1 = actionBar.newTab().setText(new String(getResources().getString(R.string.gasto)));
         tab1.setTabListener(this);
-        ActionBar.Tab tab2 = actionBar.newTab().setText(new String(getResources().getString(R.string.listar)));
+        ActionBar.Tab tab2 = actionBar.newTab().setText(new String(getResources().getString(R.string.cadastros)));
         tab2.setTabListener(this);
 
         //Adicionando as tabs no action bar
