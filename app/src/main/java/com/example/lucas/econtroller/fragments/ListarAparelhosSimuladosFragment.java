@@ -9,6 +9,7 @@ import android.graphics.Outline;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,19 +19,17 @@ import android.view.ViewOutlineProvider;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.lucas.econtroller.activitys.ADDaparelhosSimuladorActivity;
-import com.example.lucas.econtroller.activitys.SimuladorActivity;
 import com.example.lucas.econtroller.databaseAccess.AccessDataBase;
-import com.example.lucas.econtroller.databaseAccess.AparelhosSimuladosDados;
 import com.example.lucas.econtroller.R;
+import com.example.lucas.econtroller.databaseAccess.AparelhosSimuladosDados;
 import com.example.lucas.econtroller.databaseAccess.ContextoDeDados;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Lucas on 23/07/2016.
@@ -43,7 +42,7 @@ public class ListarAparelhosSimuladosFragment extends Fragment {
     AccessDataBase accessDataBase;
     PopupMenu popupMenu;
     ImageButton floatingButton;
-
+    public  ArrayList<Integer> id_aparelhoas = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,16 +56,16 @@ public class ListarAparelhosSimuladosFragment extends Fragment {
         listarAparelhos(getContext());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position,  long id) {
                 popupMenu = new PopupMenu(getContext(), view);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-
+                        deletarAparelhos(getContext(), position);
                         return false;
                     }
                 });
-                popupMenu.inflate(R.menu.menu_popup_crud);
+                popupMenu.inflate(R.menu.menu_popup_deletar);
                 popupMenu.show();
             }
         });
@@ -75,15 +74,39 @@ public class ListarAparelhosSimuladosFragment extends Fragment {
 
     public void listarAparelhos(Context context) {
         try{
-            contextoDeDados = new ContextoDeDados(context);
+            contextoDeDados = new ContextoDeDados(getContext());
+            db = contextoDeDados.getWritableDatabase();
             db = contextoDeDados.getWritableDatabase();
             accessDataBase = new AccessDataBase(db);
-            arrayAdapter = accessDataBase.buscaDados(context);
+            arrayAdapter = accessDataBase.buscaDados(context);;
             listView.setAdapter(arrayAdapter);
             arrayAdapter.notifyDataSetChanged();
+            db.close();
         }catch (Exception e){
            Toast.makeText(context, "ERRO AO LISTAR OS APARELHOS.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void deletarAparelhos(Context context, int posicao){
+        boolean deletou = false;
+        contextoDeDados = new ContextoDeDados(getContext());
+        db = contextoDeDados.getWritableDatabase();
+        accessDataBase = new AccessDataBase(db);
+        id_aparelhoas = accessDataBase.getIdsDosAparelhos(context);
+        if(!id_aparelhoas.isEmpty()){
+            AparelhosSimuladosDados aparelhosSimuladosDados = new AparelhosSimuladosDados();
+            aparelhosSimuladosDados.setId(String.valueOf(id_aparelhoas.get(posicao)));
+            Log.d("ADebugTag", "Value: " + String.valueOf(id_aparelhoas.get(posicao)));
+            deletou = accessDataBase.deletar(aparelhosSimuladosDados);
+            if (deletou){
+                arrayAdapter.remove(arrayAdapter.getItem(posicao));
+                arrayAdapter.notifyDataSetChanged();
+                Toast.makeText(context, "Dispositivo deletado com successo", Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(context, "Error. Ao deletar.", Toast.LENGTH_LONG).show();
+            }
+        }
+        db.close();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -95,7 +118,6 @@ public class ListarAparelhosSimuladosFragment extends Fragment {
                 outline.setOval(0, 0, size, size);
             }
         };
-
         floatingButton.setOutlineProvider(viewOutlineProvider);
         floatingButton.setClipToOutline(true);
         floatingButton.setOnClickListener(new View.OnClickListener() {

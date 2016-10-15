@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ import java.util.List;
 public class AccessDataBase {
     private SQLiteDatabase db;
     private ContextoDeDados contextoDeDados;
+    private ArrayList<Integer> id_aparelhos;
+    private ArrayAdapter< String> adpBusca;
 
     public AccessDataBase(SQLiteDatabase db){
         this.db = db;
@@ -57,7 +60,7 @@ public class AccessDataBase {
             contentValues.put("horas_ligados", aparelhosSimuladosDados.getHorasLigados());
 
             //Atualizando (databasname, valores, where, parametros da where)
-            db.update("ECOntrollerBaseDeDados", contentValues, "_id = ?", new String[]{""+ aparelhosSimuladosDados.getId()});
+            db.update("aparelhos_simulados", contentValues, "_id = ?", new String[]{""+ aparelhosSimuladosDados.getId()});
             db.setTransactionSuccessful();
         }catch (Exception e){
             Log.e("Erro", e.toString());
@@ -68,23 +71,23 @@ public class AccessDataBase {
     }
 
     //DELETAR
-    public void deletar(AparelhosSimuladosDados aparelhosSimuladosDados){
-        db.beginTransaction();
+    public boolean deletar(AparelhosSimuladosDados aparelhosSimuladosDados){
+        boolean retorno = false;
         try{
             //Deletando (databasname, where, parametros da where)
-            db.delete("ECOntrollerBaseDeDados", "_id = ?", new String[]{""+ aparelhosSimuladosDados.getId()});
-            db.setTransactionSuccessful();
+            Log.d("ADebugTag", "Value: " + aparelhosSimuladosDados.getId());
+            db.delete("aparelhos_simulados", "_id = ?", new String[]{""+ aparelhosSimuladosDados.getId()});
+            retorno = true;
         }catch (Exception e){
             Log.e("Erro", e.toString());
+            retorno = false;
         }
-        finally {
-            db.endTransaction();
-        }
+        return retorno;
     }
 
     //PROCURAR
-    public ArrayAdapter<String> buscaDados(Context context){
-        ArrayAdapter<String> adpBusca = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1);
+    public ArrayAdapter buscaDados(Context context){
+        adpBusca = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1);
         String nome;
         String consumoEmWats;
 
@@ -100,7 +103,23 @@ public class AccessDataBase {
         }else{
             Toast.makeText(context, "Não achei nada!!.", Toast.LENGTH_LONG).show();
         }
-
+        cursor.close();
         return adpBusca;
+    }
+
+    public ArrayList<Integer> getIdsDosAparelhos(Context context){
+        id_aparelhos = new ArrayList<>();
+        Cursor cursor = db.query("aparelhos_simulados", null, null ,null, null, null, null, null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do{
+                id_aparelhos.add(Integer.parseInt(cursor.getString(0)));
+                Log.d("ADebugTag", "Value: " + cursor.getString(0));
+            }while(cursor.moveToNext());
+        }else{
+            Toast.makeText(context, "Não achei nada!!.", Toast.LENGTH_LONG).show();
+        }
+        cursor.close();
+        return id_aparelhos;
     }
 }

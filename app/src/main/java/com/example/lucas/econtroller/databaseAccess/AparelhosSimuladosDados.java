@@ -4,7 +4,7 @@ package com.example.lucas.econtroller.databaseAccess;
  * Created by Lucas on 13/08/2016.
  */
 public class AparelhosSimuladosDados {
-    private static String nome = "", consumoEmWats = "", semanasLigados = "", diasLigados = "", horasLigados = "", id ;
+    private static String nome = "", consumoEmWats = "", semanasLigados = "", diasLigados = "", horasLigados = "", id ="" ;
 
     public void setId(String id){
         AparelhosSimuladosDados.id = id;
