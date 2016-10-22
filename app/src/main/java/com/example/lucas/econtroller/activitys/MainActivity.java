@@ -39,12 +39,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Button button;
 
     SwipeRefreshLayout swipeLayout ;
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setElevation(0);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         listDevices = (LinearLayout) findViewById(R.id.aparelhosEncontrados);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

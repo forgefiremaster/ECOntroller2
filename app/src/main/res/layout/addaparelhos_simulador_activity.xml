@@ -9,6 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_marginTop="25dp"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -28,53 +29,54 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
                 >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nome seu Dispositivo: "
-                    android:textSize="20dp"
-                    />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/nome"
+                    android:hint="  Nome"
+                    android:background="@drawable/rounded_edittext"
+                    android:textSize="20dp"
+                    android:height="50dp"
                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:orientation="vertical"
                 android:layout_margin="10dp"
+                android:height="50dp"
                 >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Consumo em Watts: "
-                    android:textSize="20dp"
-                    />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
                     android:id="@+id/consumo_watts"
+                    android:hint="  Watts"
+                    android:background="@drawable/rounded_edittext"
+                    android:textSize="20dp"
+                    android:height="50dp"
                     />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quantas semanas o aparelho fica ligado por mês?: "
+                    android:text="Semanas "
                     android:textSize="20dp"
                     />
                 <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:id="@+id/semanas"
                     />
             </LinearLayout>
@@ -87,12 +89,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quantos dias o aparelho fica ligado por semana? "
+                    android:text="Dias  "
                     android:textSize="20dp"
                     />
                 <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="47dp"
                     android:id="@+id/dias"
                     />
             </LinearLayout>
@@ -105,12 +107,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quantas horas o aparelho fica ligado por dia?"
+                    android:text="Horas "
                     android:textSize="20dp"
                     />
                 <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="48dp"
                     android:id="@+id/horas"
                     />
             </LinearLayout>
@@ -123,7 +125,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CADASTRAR"
+                    android:text="OK"
                     android:layout_gravity="center_horizontal"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
